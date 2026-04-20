@@ -1,47 +1,45 @@
-# VenueFlow AI - Stadium Concierge
+# Venue-Ease 🏟️
 
-VenueFlow AI is a high-performance stadium concierge application designed to provide personalized assistance to stadium attendees. This version is powered by **Gemini 1.5 Flash** for fast, reliable text-based interactions.
+A minimalist, high-performance stadium concierge dashboard. Built to help fans navigate massive venues without the chaos.
 
-## Features
-- **Premium UI**: Sleek, modern dashboard with real-time stadium insights.
-- **AI Concierge**: High-speed conversational assistant for stadium info.
-- **Onboarding Flow**: Tailored experience based on stadium and section selection.
-- **GitHub Ready**: Clean structure with environment-based configuration.
+## The Problem
+Stadiums are huge, confusing, and crowded. This project explores a streamlined UI to give fans exactly what they need: where they are, what's happening on the field, and a smart assistant to answer the quick questions like "Where's the nearest gate?"
 
-## Getting Started
+## 🛠️ Built With
+- **Angular 19** (Signals-driven state management)
+- **Gemini 1.5 Flash** (Low-latency LLM for the concierge)
+- **Tailwind CSS** (Clean, responsive layout)
+- **Node/Express (SSR)** (Optimized for performance)
 
-### Prerequisites
-- Node.js (v20+)
-- Angular CLI
+## 🚀 Quick Start
 
-### Installation
+### 1. Requirements
+- Node.js v20+
+- A Gemini API Key from [Google AI Studio](https://aistudio.google.com/app/apikey)
 
-1. **Clone the repository**:
-   ```bash
-   git clone <your-repo-url>
-   cd VFAI
-   ```
+### 2. Setup
+```bash
+# Install dependencies
+npm install
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+# Setup your API key
+cp src/environments/environment.ts.template src/environments/environment.ts
+# Paste your key into the environment.ts file
+```
 
-3. **Configure Environment**:
-   - Locate `src/environments/environment.ts.template`.
-   - Create a copy named `src/environments/environment.ts`.
-   - Add your [Gemini API Key](https://aistudio.google.com/app/apikey) to the `geminiApiKey` field.
-
-### Development Server
-
-Run the development server on port 3000:
+### 3. Run it
 ```bash
 npm run dev
 ```
-Navigate to `http://localhost:3000`.
+Head over to `http://localhost:3000` and you're good to go.
 
-## Deployment
-This project is container-ready and includes a `Dockerfile` for easy deployment to Google Cloud Run or similar platforms.
+## 📝 Features
+- **Dashboard**: Live score tracking and venue heatmap (simulated).
+- **Concierge**: A specialized AI assistant that stays on topic (stadium info only).
+- **Onboarding**: Tailored experience based on your specific section and block.
+
+## 📦 Deployment
+The repo includes a `Dockerfile` ready for Google Cloud Run. 
 
 ---
-Built with ❤️ for stadium fans everywhere.
+*Note: This is a developer-focused prototype. The current AI assistant is configured for high reliability and concise text responses.*
