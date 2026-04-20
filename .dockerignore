@@ -1,0 +1,16 @@
+.git
+.github
+.angular
+node_modules
+dist
+Dockerfile
+.dockerignore
+.env
+.env.example
+README.md
+*.zip
+vendor
+.vscode
+.eslint.config.js
+tailwind.config.js
+postcss.config.js
