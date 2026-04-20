@@ -1,6 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { GoogleGenAI } from '@google/genai';
-import { environment } from '../../../environments/environment';
+
+// Declared as a global via angular.json "define" to stay GitHub-friendly
+declare const GEMINI_API_KEY: string;
 
 export interface ChatMessage {
   role: 'user' | 'model';
@@ -21,18 +23,22 @@ export class AiService {
   isTyping = signal<boolean>(false);
 
   constructor() {
-    // Initialize the Gemini SDK using the environment-based API key
-    if (environment.geminiApiKey) {
-      this.ai = new GoogleGenAI({ apiKey: environment.geminiApiKey });
-      this.model = this.ai.models.get({ model: 'gemini-1.5-flash' });
+    // Initialize using the build-time global constant
+    try {
+      if (typeof GEMINI_API_KEY !== 'undefined' && GEMINI_API_KEY) {
+        this.ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+        this.model = this.ai.models.get({ model: 'gemini-1.5-flash' });
+      }
+    } catch (e) {
+      console.warn('AI initialization skipped: GEMINI_API_KEY not found.');
     }
   }
 
   async sendMessage(text: string): Promise<void> {
-    if (!environment.geminiApiKey) {
+    if (!this.model) {
       this.messages.update(msgs => [...msgs, 
         { role: 'user', text },
-        { role: 'model', text: 'AI configuration missing. Please add your Gemini API key to environment.ts.' }
+        { role: 'model', text: 'AI configuration missing. Please ensure the API key is set in angular.json.' }
       ]);
       return;
     }
